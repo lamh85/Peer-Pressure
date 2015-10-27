@@ -56,5 +56,3 @@ You are going to create a Gif pronunciation simulator. To do so, please implemen
 - There is a spec (`spec/simulator_spec.rb`) that outlines some basic scenarios to help you get started. We'd love it if you added some more tests.
 
 - This can be run via `bundle exec rspec spec/simulator_spec.rb`
-# Peer-Pressure
-# Peer-Pressure
