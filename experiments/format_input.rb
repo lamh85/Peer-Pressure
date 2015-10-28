@@ -1,19 +1,24 @@
 puts "Give me an NxM array!"
 
-@input = gets.chomp
+@seating = gets.chomp
 
 # Trim whitespaces
-@input = @input.gsub(" ","")
+@seating = @seating.gsub(" ","")
 # Split only the first dimension
-@input = @input.split("],[")
-@input.each_with_index do |element, index|
-    @input[index] = element.gsub(/(\[|\])/,"")
+@seating = @seating.split("],[")
+@seating.each_with_index do |element, index|
+    @seating[index] = element.gsub(/(\[|\])/,"")
     # Split the second dimension
-    @input[index] = @input[index].split(",").map(&:to_sym)
+    @seating[index] = @seating[index].split(",").map(&:to_sym)
 end
 
-puts "The input is: #{@input}"
-puts "The class is: #{@input.class}"
+puts "The input is: #{@seating}"
+puts "The class is: #{@seating.class}"
 
-# [1,2,3],[1,2,3]
-# [soft,hard,none],[soft,hard,none]
+=begin
+[soft,hard,none],[soft,hard,none],[soft,hard,none]
+
+[soft,hard,none]
+[soft,hard,none]
+[soft,hard,none]
+=end
