@@ -7,16 +7,6 @@ visual representation:
 2   [soft,hard,none]
     0,      1,  2
 
-ERRORS
-===
-The current seat's index is 1, 1
-The neighbours are: [:soft, :hard, :none, :none, :none, :soft, :hard, :none]
-The frequencies are: {:hard=>2, :soft=>2, :none=>4}
-===
-The current seat's index is 1, 2
-The neighbours are: [:hard, :none, :none, :hard, :none]
-The frequencies are: {:hard=>2, :soft=>0, :none=>3}
-===    
 =end
 
 @seating = [:soft,:hard,:none],[:soft,:hard,:none],[:soft,:hard,:none]

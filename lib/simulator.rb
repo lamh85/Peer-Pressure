@@ -15,13 +15,12 @@ class Simulator
     end
 
     if frequencies[:hard] == frequencies[:soft]
-        verdict = :push
+        return :push
     elsif frequencies[:hard] > frequencies[:soft]
-        verdict = :hard
+        return :hard
     else
-        verdict = :soft
+        return :soft
     end
-    return verdict
   end
 
   # I added this method because I was disappointed that SPEC doesn't want "state" to return pretty formatting =P
@@ -41,7 +40,9 @@ class Simulator
 
   def next
     @influencers = @seating.map(&:dup)
-    index_modifiers = [-1,-1], [-1,0], [-1,+1], [0,-1], [0,+1], [1,-1], [1,0], [1,+1]
+    index_modifiers = [ [-1,-1], [-1,0], [-1,+1],
+                        [0,-1], [0,+1], 
+                        [1,-1], [1,0], [1,+1] ]
     # Loop through each row
     @influencers.each_with_index do |row, row_index|
         # Loop throubh each seat of the row
@@ -83,7 +84,7 @@ class Simulator
                 
         end # loop each seat
     end # loop each row
-  end # class method
+  end
 
   private
 
