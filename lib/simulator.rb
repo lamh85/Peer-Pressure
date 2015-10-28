@@ -4,11 +4,9 @@ class Simulator
 
   def initialize(input)
     @seating = input.to_s
-    format_input
-  end
 
-  # Convert the user input into a 2-dimensional array
-  def format_input
+    # Convert the user input into a 2-dimensional array
+    # ---
     # Trim whitespaces
     @seating = @seating.gsub(" ","")
     # Split only the first dimension
@@ -18,7 +16,7 @@ class Simulator
         @seating[index] = element.gsub(/(\[|\])/,"")
         # Split the second dimension
         @seating[index] = @seating[index].split(",").map(&:to_sym)
-    end    
+    end
   end
 
   def verdict
