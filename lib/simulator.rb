@@ -14,13 +14,9 @@ class Simulator
         end
     end
 
-    if frequencies[:hard] == frequencies[:soft]
-        return :push
-    elsif frequencies[:hard] > frequencies[:soft]
-        return :hard
-    else
-        return :soft
-    end
+    return :push if frequencies[:hard] == frequencies[:soft]
+    return :hard if frequencies[:hard] > frequencies[:soft]
+    return :soft
   end
 
   # I added this method because I was disappointed that SPEC doesn't want "state" to return pretty formatting =P
@@ -40,9 +36,9 @@ class Simulator
 
   def next
     @influencers = @seating.map(&:dup)
-    index_modifiers = [ [-1,-1], [-1,0], [-1,+1],
-                        [0,-1], [0,+1], 
-                        [1,-1], [1,0], [1,+1] ]
+    index_modifiers = [ [-1,-1],  [-1,0],   [-1,1],
+                         [0,-1],             [0,1], 
+                         [1,-1],   [1,0],    [1,1] ]
     # Loop through each row
     @influencers.each_with_index do |row, row_index|
         # Loop throubh each seat of the row
@@ -63,17 +59,14 @@ class Simulator
             end
 
             # Logic for changing opinion
-            # Had an opinion
-            if @seating[row_index][seat_index] != :none
-                if frequencies[:hard] + frequencies[:soft] < 2
-                    @seating[row_index][seat_index] = :none
-                end
-                if frequencies[:hard] + frequencies[:soft] > 3
+            if @seating[row_index][seat_index] != :none # Had an opinion
+                if  frequencies[:hard] + frequencies[:soft] < 2 ||
+                    frequencies[:hard] + frequencies[:soft] > 3
                     @seating[row_index][seat_index] = :none
                 end
                 # if opinionated neighbours == 2 or 3, then no change
-            # Had no opinion
-            elsif @seating[row_index][seat_index] == :none && frequencies[:hard] + frequencies[:soft] == 3
+            elsif   @seating[row_index][seat_index] == :none &&
+                    frequencies[:hard] + frequencies[:soft] == 3 # Had no opinion
                 if frequencies[:hard] >= 2
                     @seating[row_index][seat_index] = :hard
                 end
