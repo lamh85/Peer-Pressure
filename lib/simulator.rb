@@ -67,12 +67,8 @@ class Simulator
                 # if opinionated neighbours == 2 or 3, then no change
             elsif   @seating[row_index][seat_index] == :none &&
                     frequencies[:hard] + frequencies[:soft] == 3 # Had no opinion
-                if frequencies[:hard] >= 2
-                    @seating[row_index][seat_index] = :hard
-                end
-                if frequencies[:soft] >= 2
-                    @seating[row_index][seat_index] = :soft
-                end
+                @seating[row_index][seat_index] = :hard if frequencies[:hard] >= 2
+                @seating[row_index][seat_index] = :soft if frequencies[:soft] >= 2
             end # opinion logic
                 
         end # loop each seat
