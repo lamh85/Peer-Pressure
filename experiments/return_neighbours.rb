@@ -20,16 +20,9 @@ The frequencies are: {:hard=>2, :soft=>0, :none=>3}
 =end
 
 @seating = [:soft,:hard,:none],[:soft,:hard,:none],[:soft,:hard,:none]
-puts @seating.object_id
 @influencers = @seating.map(&:dup)
-puts @influencers.object_id
 
-def index_modifier(row_index, seat_index)
-    return 
-end
-
-# problems with [0,-1]
-index_modifiers = [-1, -1],[-1, 0],[-1, +1],[0, -1],[0, +1],[1, -1],[1, 0],[1, +1]
+index_modifiers = [-1, -1], [-1, 0], [-1, +1], [0, -1], [0, +1], [1, -1], [1, 0], [1, +1]
 
 # Can the index be found within the array?
 def valid_index?(array, index_number)
@@ -84,10 +77,10 @@ end
                 @seating[row_index][seat_index] = :soft
                 puts "The opinion IS NOW #{@seating[row_index][seat_index]}"
             end
-        end
+        end # opinion logic
             
-    end
-end
+    end # loop each seat
+end # loop each row
 
 puts "The seating is now:"
 @seating.each do |row|
