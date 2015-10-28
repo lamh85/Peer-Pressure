@@ -13,12 +13,13 @@ class Simulator
             frequencies[seat] = frequencies[seat] + 1 if frequencies[seat]
         end
     end
-    frequencies = Hash[frequencies.sort_by{ |k,v| v }.reverse]
 
-    if frequencies.values[0] > frequencies.values[1]
-        verdict = frequencies.keys[0]
-    elsif frequencies.values[0] == frequencies.values[1]
+    if frequencies[:hard] == frequencies[:soft]
         verdict = :push
+    elsif frequencies[:hard] > frequencies[:soft]
+        verdict = :hard
+    else
+        verdict = :soft
     end
     return verdict
   end
@@ -40,7 +41,7 @@ class Simulator
 
   def next
     @influencers = @seating.map(&:dup)
-    index_modifiers = [-1, -1],[-1, 0],[-1, +1],[0, -1],[0, +1],[1, -1],[1, 0],[1, +1]    
+    index_modifiers = [-1,-1], [-1,0], [-1,+1], [0,-1], [0,+1], [1,-1], [1,0], [1,+1]
     # Loop through each row
     @influencers.each_with_index do |row, row_index|
         # Loop throubh each seat of the row
