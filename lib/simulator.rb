@@ -47,9 +47,9 @@ class Simulator
             # Build a temporary array of valid neighbours
             neighbours = []
             index_modifiers.each do |modifier|
-                if valid_index?(@influencers, row_index + modifier[0]) && valid_index?(row, seat_index + modifier[1])
-                    neighbours << @influencers[row_index + modifier[0]][seat_index + modifier[1]]
-                end
+                valid_index?(@influencers, row_index + modifier[0]) && 
+                valid_index?(row, seat_index + modifier[1]) &&
+                neighbours << @influencers[row_index + modifier[0]][seat_index + modifier[1]]
             end
 
             # Count the neighbouring opinions
