@@ -36,9 +36,9 @@ class Simulator
 
   def next
     @influencers = @seating.map(&:dup)
-    index_modifiers = [ [-1,-1],  [-1,0],   [-1,1],
-                         [0,-1],             [0,1], 
-                         [1,-1],   [1,0],    [1,1] ]
+    index_modifiers = [-1,-1],  [-1, 0],  [-1, 1],
+                      [ 0,-1],            [ 0, 1], 
+                      [ 1,-1],  [ 1, 0],  [ 1, 1]
     # Loop through each row
     @influencers.each_with_index do |row, row_index|
         # Loop throubh each seat of the row
