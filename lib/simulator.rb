@@ -15,7 +15,7 @@ class Simulator
     end
 
     return :push if frequencies[:hard] == frequencies[:soft]
-    return :hard if frequencies[:hard] > frequencies[:soft]
+    return :hard if frequencies[:hard] >  frequencies[:soft]
     return :soft
   end
 
@@ -43,12 +43,12 @@ class Simulator
     @influencers.each_with_index do |row, row_index|
         # Loop throubh each seat of the row
         row.each_with_index do |seat, seat_index|
-
+          
             # Build a temporary array of valid neighbours
             neighbours = []
             index_modifiers.each do |modifier|
                 valid_index?(@influencers, row_index + modifier[0]) && 
-                valid_index?(row, seat_index + modifier[1]) &&
+                valid_index?(row, seat_index + modifier[1])         &&
                 neighbours << @influencers[row_index + modifier[0]][seat_index + modifier[1]]
             end
 
